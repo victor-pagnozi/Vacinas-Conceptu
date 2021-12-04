@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import HTMLReactParser from 'html-react-parser';
+import parse from 'html-react-parser';
+import { Container } from './styles';
 
 export default function Home() {
 
@@ -21,11 +24,11 @@ export default function Home() {
 
 
     useEffect(() => {
-        const idMaps = 1100130;
+        const idMaps = 11;
         const getMaps = async () => {
             try {
-                const res = await axios.get("https://servicodados.ibge.gov.br/api/v3/malhas/estados/43?formato=image/svg+xml&qualidade=intermediaria&intrarregiao=municipio");
-                setMaps(res.data.split("?>")[1]);
+                const res = await axios.get("https://servicodados.ibge.gov.br/api/v3/malhas/estados/" + idMaps + "?formato=image/svg+xml&qualidade=intermediaria&intrarregiao=municipio");
+                setMaps(parse('<div>' + res.data.split("?>")[1] + '</div>'));
             } catch (err) {
                 console.log(err)
             }
@@ -37,8 +40,9 @@ export default function Home() {
 
     return (
         <>
-            
-            {console.log(maps)}
+            <Container>
+                {maps}
+            </Container>
         </>
     )
 }
