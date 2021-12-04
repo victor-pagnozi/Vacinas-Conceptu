@@ -6,8 +6,18 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
     svg{
         max-height: 90vh;
+        background-color: #bbb;
     }
+
+    svg g path{
+        color: yellow;
+    }
+`;
+
+export const Selects = styled.div`
+    display: flex;
 `;

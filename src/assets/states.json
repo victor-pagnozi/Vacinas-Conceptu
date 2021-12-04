@@ -1,0 +1,110 @@
+[
+  {
+    "id_estado": 12,
+    "estado_abrev": "AC"
+  },
+  {
+    "id_estado": 27,
+    "estado_abrev": "AL"
+  },
+  {
+    "id_estado": 13,
+    "estado_abrev": "AM"
+  },
+  {
+    "id_estado": 16,
+    "estado_abrev": "AP"
+  },
+  {
+    "id_estado": 29,
+    "estado_abrev": "BA"
+  },
+  {
+    "id_estado": 23,
+    "estado_abrev": "CE"
+  },
+  {
+    "id_estado": 53,
+    "estado_abrev": "DF"
+  },
+  {
+    "id_estado": 32,
+    "estado_abrev": "ES"
+  },
+  {
+    "id_estado": 52,
+    "estado_abrev": "GO"
+  },
+  {
+    "id_estado": 21,
+    "estado_abrev": "MA"
+  },
+  {
+    "id_estado": 31,
+    "estado_abrev": "MG"
+  },
+  {
+    "id_estado": 50,
+    "estado_abrev": "MS"
+  },
+  {
+    "id_estado": 51,
+    "estado_abrev": "MT"
+  },
+  {
+    "id_estado": 15,
+    "estado_abrev": "PA"
+  },
+  {
+    "id_estado": 25,
+    "estado_abrev": "PB"
+  },
+  {
+    "id_estado": 26,
+    "estado_abrev": "PE"
+  },
+  {
+    "id_estado": 22,
+    "estado_abrev": "PI"
+  },
+  {
+    "id_estado": 41,
+    "estado_abrev": "PR"
+  },
+  {
+    "id_estado": 33,
+    "estado_abrev": "RJ"
+  },
+  {
+    "id_estado": 24,
+    "estado_abrev": "RN"
+  },
+  {
+    "id_estado": 11,
+    "estado_abrev": "RO"
+  },
+  {
+    "id_estado": 14,
+    "estado_abrev": "RR"
+  },
+  {
+    "id_estado": 43,
+    "estado_abrev": "RS"
+  },
+  {
+    "id_estado": 42,
+    "estado_abrev": "SC"
+  },
+  {
+    "id_estado": 28,
+    "estado_abrev": "SE"
+  },
+  {
+    "id_estado": 35,
+    "estado_abrev": "SP"
+  },
+  {
+    "id_estado": 17,
+    "estado_abrev": "TO"
+  }
+]
