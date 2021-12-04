@@ -7,12 +7,66 @@ import statesJson from "../../assets/states.json";
 
 export default function Home() {
 
-    const [cirt, setCity] = useState([]);
-    const [listCity] = useState(citiesJson);
-    const [listStates] = useState(statesJson);
+    const [city, setCity] = useState('');
+    const [listCity, setListCity] = useState([]);
+    const [uf, setUf] = useState(statesJson);
+    const [listUf, setListUf] = useState([]);
     const [maps, setMaps] = useState([null]);
+    const [idState, setIdState] = useState('');
+    const [optionSelectedStateForCity, setOptionSelectedStateForCity] = useState('');
+
+    function loadUf() {
+        setListUf(statesJson);
+    }
+
+    function loadCity() {
+        let selectedState = document.getElementById("select-states");
+        setOptionSelectedStateForCity(selectedState.options[selectedState.selectedIndex])
+
+
+        setListCity(citiesJson);
+    }
+
+    function updateMaps() {
+        let selectedState = document.getElementById("select-states");
+        var optionSelectedState = selectedState.options[selectedState.selectedIndex];
+        if (!optionSelectedState) {
+            optionSelectedState = "12";
+        }
+        const getMaps = async () => {
+            try {
+                const res = await axios.get("https://servicodados.ibge.gov.br/api/v3/malhas/estados/" + optionSelectedState.value + "?formato=image/svg+xml&qualidade=intermediaria&intrarregiao=municipio");
+                setMaps(parse(res.data.split("?>")[1]));
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getMaps();
+    }
 
     useEffect(() => {
+        loadUf();
+    }, [])
+
+    useEffect(() => {
+        loadCity();
+    }, [])
+
+    useEffect(() => {
+        updateMaps();
+    }, [])
+
+
+
+    {/*const listCities = async (e) => {
+        e.preventDefault();
+        var selectedState = document.getElementById("select-states");
+        var optionSelectedState = selectedState.options[selectedState.selectedIndex].value;
+
+        console.log(listCity)
+        setIdState(optionSelectedState);
+    }
+        useEffect(() => {
         const idMunicipio = 1100130;
         const getCity = async () => {
             try {
@@ -24,47 +78,29 @@ export default function Home() {
         }
         getCity();
     }, []);
-
-
-    useEffect(() => {
-        const idMaps = 11;
-        const getMaps = async () => {
-            try {
-                const res = await axios.get("https://servicodados.ibge.gov.br/api/v3/malhas/estados/" + idMaps + "?formato=image/svg+xml&qualidade=intermediaria&intrarregiao=municipio");
-                setMaps(parse(res.data.split("?>")[1]));
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        getMaps();
-    }, []);
-
-    const listCities = async (e) => {
-        e.preventDefault();
-        var selectedState = document.getElementById("select-states");
-        var optionSelectedState = selectedState.options[selectedState.selectedIndex].value;
-        console.log(optionSelectedState)
-    }
-
+*/}
     return (
         <>
             <Container>
                 <Selects>
-                    <select name="" id="select-states" onClick={listCities}>
-                        {listStates.map((s) => (
+                    <select name="" value={uf} onClick={loadCity} onChange={e => setUf(e.target.value)} id="select-states">
+                        {listUf.map((s) => (
                             <option value={s.id_estado}>{s.estado_abrev}</option>
                         ))}
                     </select>
 
-                    <select name="" id="select-city">
+                    <select name="" value={city} onChange={e => setCity(e.target.value)} id="select-city">
                         {listCity.map((m) => (
-                            
-                            m.id_estado === 17?
-                                <option value={m.nomemun}>{m.nomemun}</option> : ""
+                            m.id_estado === 11 ? <option value={m.id_munic}>{m.nomemun}</option> : ""
                         ))
                         }
+
+                        {console.log()}
                     </select>
-                    {console.log(document.getElementById("select-states").options[document.getElementById("select-states").selectedIndex].value )}
+
+                    <button onClick={loadCity}>Carregar cidades</button>
+
+                    <button onClick={updateMaps}>Carregar Mapa</button>
                 </Selects>
 
                 {maps}
