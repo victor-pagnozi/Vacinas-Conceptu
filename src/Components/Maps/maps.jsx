@@ -17,6 +17,11 @@ export class maps extends Component {
     handleMouseHover() {
         this.setState(this.toggleHoverState);
     }
+    toggleHoverState(state) {
+        return {
+            isHovering: !state.isHovering,
+        };
+    }
 
     updateMaps() {
         let selectedState = document.getElementById("select-states");
@@ -40,7 +45,19 @@ export class maps extends Component {
         return (
             <ContainerMaps>
                 <button onClick={this.updateMaps}>Carregar Mapa</button>
-                {this.state.maps}
+
+                <div
+                    onMouseEnter={this.handleMouseHover}
+                    onMouseLeave={this.handleMouseHover}
+                >
+                    {this.state.maps}
+                </div>
+                {
+                    this.state.isHovering &&
+                    <div>
+                        Hover funcionando
+                    </div>
+                }
             </ContainerMaps>
         )
     }
