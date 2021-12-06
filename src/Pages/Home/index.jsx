@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { Container, Selects } from './styles';
 import citiesJson from "../../assets/cities.json";
 import statesJson from "../../assets/states.json";
+import Maps from '../../Components/Maps/maps';
 
 export default function Home() {
 
@@ -27,7 +28,7 @@ export default function Home() {
         setListCity(citiesJson);
     }
 
-    function updateMaps() {
+    {/*function updateMaps() {
         let selectedState = document.getElementById("select-states");
         var optionSelectedState = selectedState.options[selectedState.selectedIndex];
         if (!optionSelectedState) {
@@ -42,7 +43,7 @@ export default function Home() {
             }
         }
         getMaps();
-    }
+    }  */}
 
     useEffect(() => {
         loadUf();
@@ -52,9 +53,9 @@ export default function Home() {
         loadCity();
     }, [])
 
-    useEffect(() => {
+   {/* useEffect(() => {
         updateMaps();
-    }, [])
+    }, [])   */}
 
 
 
@@ -90,20 +91,19 @@ export default function Home() {
                     </select>
 
                     <select name="" value={city} onChange={e => setCity(e.target.value)} id="select-city">
-                        {listCity.map((m) => (
+                {/*        {listCity.map((m) => (
                             m.id_estado === 11 ? <option value={m.id_munic}>{m.nomemun}</option> : ""
                         ))
-                        }
+                        }    */}
 
-                        {console.log()}
                     </select>
 
                     <button onClick={loadCity}>Carregar cidades</button>
 
-                    <button onClick={updateMaps}>Carregar Mapa</button>
+                    <button>Carregar Mapa</button>
                 </Selects>
 
-                {maps}
+                <Maps />
             </Container>
         </>
     )

@@ -8,13 +8,8 @@ export const Container = styled.div`
     justify-content: center;
     flex-direction: column;
 
-    svg{
-        max-height: 90vh;
-        background-color: #bbb;
-    }
-
-    svg g path{
-        color: yellow;
+   path#\31 200013{
+        fill: green;
     }
 `;
 
