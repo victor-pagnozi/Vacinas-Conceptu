@@ -7,10 +7,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
-   path#\31 200013{
-        fill: green;
-    }
 `;
 
 export const Selects = styled.div`

@@ -8,6 +8,19 @@ body {
   background: #aaa;
 }
 
+:root{
+    --color-zero-dez: red;
+    --color-onze-vinte: rgb(255, 76, 22);
+    --color-vinteUm-trinta: rgb(255, 115, 0);
+    --color-trintaUm-quarenta: rgb(224, 172, 0);
+    --color-quarentaUm-cinquenta: yellow;
+    --color-cinquentaUm-sessenta: rgb(166, 255, 0);
+    --color-sessentaUm-setenta: rgb(193, 255, 79);
+    --color-setentaUm-oitenta: rgb(94, 255, 0);
+    --color-oitentaUm-noventa: rgb(16, 124, 16);
+    --color-noventaUm-cem: green;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

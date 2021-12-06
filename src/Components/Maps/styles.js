@@ -5,4 +5,8 @@ export const ContainerMaps = styled.div`
         max-height: 80vh;
         background-color: #bbb;
     }
+
+    .year-span{
+        display: flex;
+    }
 `;
