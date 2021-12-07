@@ -14,16 +14,29 @@ export class maps extends Component {
             maps: '',
             isHovering: false,
             uf: statesJson,
+            nameCity: '',
+            message: '',
         };
         this.updateMaps = this.updateMaps.bind(this);
     }
 
+    handleEvent = (event) => {
+        if (event.type === "mousedown") {
+            this.setState({ message: "Mouse Down" });
+        } else {
+            this.setState({ message: "Mouse Up" });
+        }
+    }
+
     handleMouseHover() {
         this.setState(this.toggleHoverState);
+        this.setState({ message: "Teste Hover novo" });
     }
+
     toggleHoverState(state) {
         return {
             isHovering: !state.isHovering,
+            message: '',
         };
     }
 
@@ -54,7 +67,8 @@ export class maps extends Component {
                     }
                     var retornarNumeros = citiesJson.filter(procurarValores);
                     retornarNumeros.forEach(retornar => {
-                        console.log(retornar)
+                        variavel.setAttribute("name-city", retornar.nomemun);
+                        variavel.setAttribute("percentage-city", retornar.cob_vac_bcg);
 
                         switch (true) {
                             case (retornar.cob_vac_bcg <= 10):
@@ -103,18 +117,16 @@ export class maps extends Component {
         }
         getMaps();
     }
-
     componentDidMount() {
         this.updateMaps()
     }
-
     renderRow(row) {
         return <option value={row}>{row}</option>
     }
 
     render() {
         let rows = []
-        for (let i = 2010; i <= 2021; i++) {
+        for (let i = 2010; i <= 2019; i++) {
             rows.push(i)
         }
         if (rows.length == 0) {
@@ -123,6 +135,16 @@ export class maps extends Component {
 
         return (
             <ContainerMaps>
+
+                <div name-city="teste de teste de teste">aaaaaaaaaaaa</div>
+                <div percentage-city="teste percentage" className="percentage"> Teste oercentageeeeee</div>
+
+                {this.state.isHovering &&
+                    <div className="hover-maps">
+                        {this.state.message}
+                    </div>
+                }
+
                 <Selects>
                     <div>
                         <p>Selecione o Estado:</p>
@@ -141,19 +163,13 @@ export class maps extends Component {
                     </div>
                 </Selects>
 
-                <div
-                    className="render-map"
-                    onMouseEnter={this.handleMouseHover}
-                    onMouseLeave={this.handleMouseHover}
+                <div className="render-map"
+                //onMouseEnter={this.handleMouseHover}
+                //onMouseLeave={this.handleMouseHover}
                 >
                     {this.state.maps}
                 </div>
-                {/*
-                    this.state.isHovering &&
-                    <div>
-                        Hover funcionando
-                    </div>
-                */}
+
                 <CaptionBar />
             </ContainerMaps>
         )

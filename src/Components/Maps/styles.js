@@ -21,6 +21,35 @@ export const ContainerMaps = styled.div`
     .render-map{
         margin-top: 1rem;
     }
+
+    .hover-maps{
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    [name-city] {
+        position: relative;
+        font-weight: bold;
+        top: 0;
+    }
+
+    [name-city]:after {
+        display: none;
+        position: fixed;
+        padding: 5px;
+        border-radius: 3px;
+        content: attr(name-city);
+        background-color: #0095ff;
+        color: white;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    [name-city]:hover:after {
+        display: block;
+    }
 `;
 
 export const Selects = styled.div`
