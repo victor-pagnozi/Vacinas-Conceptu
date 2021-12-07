@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const ContainerMaps = styled.div`
-    
+
     svg{
         max-height: 80vh;
         background-color: #F4F8FF;
         border-radius: 4px;
+        padding: 1rem;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
@@ -16,6 +17,10 @@ export const ContainerMaps = styled.div`
     select:focus{
         outline: none;
     }
+
+    .render-map{
+        margin-top: 1rem;
+    }
 `;
 
 export const Selects = styled.div`
@@ -25,6 +30,7 @@ export const Selects = styled.div`
 
     p{
         text-transform: uppercase;
+        margin-right: 0.7rem
     }
 
     div{

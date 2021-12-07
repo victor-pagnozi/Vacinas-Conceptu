@@ -126,7 +126,7 @@ export class maps extends Component {
                 <Selects>
                     <div>
                         <p>Selecione o Estado:</p>
-                        <select onClick={this.updateMaps} id="select-states">
+                        <select onChange={this.updateMaps} id="select-states">
                             {this.state.uf.map((s) => (
                                 <option value={s.id_estado}>{s.estado_abrev}</option>
                             ))}
@@ -135,13 +135,14 @@ export class maps extends Component {
 
                     <div>
                         <p>Selecione o Ano que deseja visualizar: </p>
-                        <select id="select-year" onClick={this.updateMaps}>
+                        <select id="select-year" onChange={this.updateMaps}>
                             {rows.map(this.renderRow)}
                         </select>
                     </div>
                 </Selects>
 
                 <div
+                    className="render-map"
                     onMouseEnter={this.handleMouseHover}
                     onMouseLeave={this.handleMouseHover}
                 >

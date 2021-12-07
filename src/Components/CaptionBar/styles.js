@@ -61,4 +61,16 @@ export const ContainerCaption = styled.div`
         min-height: 2vh;
         margin: 0 0.04rem;
     }
+
+    .caption-gray{
+        width: 5vw;
+        min-height: 2vh;
+        margin: 0 0.04rem;
+        background-color: gray;
+        font-size: 0.7vw;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `;

@@ -29,6 +29,9 @@ export default function captionBar() {
                 <div>81% - 90%</div>
                 <div>91% - 100%</div>
             </div>
+            <div className="caption-gray">
+                SEM DADOS
+            </div>
         </ContainerCaption>
     )
 }
