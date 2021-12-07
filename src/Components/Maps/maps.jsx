@@ -2,8 +2,9 @@ import React, { Component, useState } from 'react';
 import axios from 'axios';
 import parse from "html-react-parser";
 import citiesJson from "../../assets/cities.json";
+import statesJson from "../../assets/states.json";
 import AC from "../../assets/AC.json";
-import { ContainerMaps } from './styles';
+import { ContainerMaps, Selects } from './styles';
 
 export class maps extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ export class maps extends Component {
         this.state = {
             maps: '',
             isHovering: false,
+            uf: statesJson,
         };
         this.updateMaps = this.updateMaps.bind(this);
     }
@@ -89,11 +91,6 @@ export class maps extends Component {
                                 variavel.style.fill = "gray";
                                 break;
                         }
-                        //if(retornar.cob_vac_bcg <= 50){
-                        //   variavel.style.fill = "red";
-                        //}else{
-                        //    variavel.style.fill = "green";
-                        //}
                     })
                 }
 
@@ -105,7 +102,10 @@ export class maps extends Component {
             }
         }
         getMaps();
+    }
 
+    componentDidMount() {
+        this.updateMaps()
     }
 
     renderRow(row) {
@@ -123,14 +123,23 @@ export class maps extends Component {
 
         return (
             <ContainerMaps>
-                <span className="year-span">
-                    <p>Selecione o ano que deseja visualizar os dados: </p>
-                    <select id="select-year">
-                        {rows.map(this.renderRow)}
-                    </select>
-                </span>
+                <Selects>
+                    <div>
+                        <p>Selecione o Estado:</p>
+                        <select onClick={this.updateMaps} id="select-states">
+                            {this.state.uf.map((s) => (
+                                <option value={s.id_estado}>{s.estado_abrev}</option>
+                            ))}
+                        </select>
+                    </div>
 
-                <button onClick={this.updateMaps}>Carregar Mapa</button>
+                    <div>
+                        <p>Selecione o Ano que deseja visualizar: </p>
+                        <select id="select-year" onClick={this.updateMaps}>
+                            {rows.map(this.renderRow)}
+                        </select>
+                    </div>
+                </Selects>
 
                 <div
                     onMouseEnter={this.handleMouseHover}
