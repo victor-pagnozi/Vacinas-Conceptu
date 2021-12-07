@@ -3,7 +3,7 @@ import axios from 'axios';
 import parse from "html-react-parser";
 import citiesJson from "../../assets/cities.json";
 import statesJson from "../../assets/states.json";
-import AC from "../../assets/AC.json";
+import CaptionBar from '../CaptionBar/captionBar';
 import { ContainerMaps, Selects } from './styles';
 
 export class maps extends Component {
@@ -147,12 +147,13 @@ export class maps extends Component {
                 >
                     {this.state.maps}
                 </div>
-                {
+                {/*
                     this.state.isHovering &&
                     <div>
                         Hover funcionando
                     </div>
-                }
+                */}
+                <CaptionBar />
             </ContainerMaps>
         )
     }
