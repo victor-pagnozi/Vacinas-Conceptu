@@ -1,6 +1,8 @@
 import React, { Component, useState } from 'react';
 import axios from 'axios';
 import parse from "html-react-parser";
+import citiesJson from "../../assets/cities.json";
+import AC from "../../assets/AC.json";
 import { ContainerMaps } from './styles';
 
 export class maps extends Component {
@@ -26,6 +28,10 @@ export class maps extends Component {
     updateMaps() {
         let selectedState = document.getElementById("select-states");
         var optionSelectedState = selectedState.options[selectedState.selectedIndex];
+
+        let selectedYear = document.getElementById("select-year");
+        var optionSelectedYear = selectedYear.options[selectedYear.selectedIndex];
+
         if (!optionSelectedState) {
             optionSelectedState = "12";
         }
@@ -34,10 +40,24 @@ export class maps extends Component {
                 const res = await axios.get("https://servicodados.ibge.gov.br/api/v3/malhas/estados/" + optionSelectedState.value + "?formato=image/svg+xml&qualidade=intermediaria&intrarregiao=municipio");
                 this.setState({ maps: parse(res.data.split("?>")[1]) });
 
+                var variavel = document.getElementById(this.state.maps.props.children.props.children[0].props.id);
+                //variavel.style.fill = "green";
+                
+                let varListStatesSelected = this.state.maps.props.children.props.children;
+                
+                function procurarValores(value){
+                    if(value.id_munic == variavel.id & value.ano == optionSelectedYear.value)
+                    return value;
+                }
+                var retornarNumeros = AC.filter(procurarValores);
+                retornarNumeros.forEach(retornar => {
+                    console.log(retornar)
+                })
 
-                //console.log(this.state.maps.props.children.props.children[0].props.id)
-                let variavel = document.getElementById(this.state.maps.props.children.props.children[0].props.id);
-                variavel.style.fill = "green";
+                console.log(optionSelectedYear.value)
+                
+                const busca1 = AC.find(variavel => variavel.id === variavel.id);
+                
             } catch (err) {
                 console.log(err)
             }
@@ -63,7 +83,7 @@ export class maps extends Component {
             <ContainerMaps>
                 <span className="year-span">
                     <p>Selecione o ano que deseja visualizar os dados: </p>
-                    <select>
+                    <select id="select-year">
                         {rows.map(this.renderRow)}
                     </select>
                 </span>

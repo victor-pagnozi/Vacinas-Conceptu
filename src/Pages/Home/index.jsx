@@ -14,11 +14,6 @@ export default function Home() {
     const [idState, setIdState] = useState('');
     const [optionSelectedStateForCity, setOptionSelectedStateForCity] = useState('');
 
-    var rowsYears = [];
-    for (var i=0; i <= 22; i++){
-        <options>i</options>
-    }
-
     function loadUf() {
         setListUf(statesJson);
     }
@@ -46,16 +41,12 @@ export default function Home() {
                         ))}
                     </select>
 
-                    <select name="" value={city} onChange={e => setCity(e.target.value)} id="select-city">
-                        {/*        {listCity.map((m) => (
+                   {/* <select name="" value={city} onChange={e => setCity(e.target.value)} id="select-city">
+                                {listCity.map((m) => (
                             m.id_estado === 11 ? <option value={m.id_munic}>{m.nomemun}</option> : ""
                         ))
-                        }    */}
-                    </select>
-
-                    <select>
-                        
-                    </select>
+                        }    
+                    </select>*/}
 
                     <button onClick={loadCity}>Carregar cidades</button>
                 </Selects>

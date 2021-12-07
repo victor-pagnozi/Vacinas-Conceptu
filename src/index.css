@@ -9,6 +9,7 @@ body {
 }
 
 :root{
+    --color-zero: gray;
     --color-zero-dez: red;
     --color-onze-vinte: rgb(255, 76, 22);
     --color-vinteUm-trinta: rgb(255, 115, 0);
