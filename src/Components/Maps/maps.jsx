@@ -40,24 +40,66 @@ export class maps extends Component {
                 const res = await axios.get("https://servicodados.ibge.gov.br/api/v3/malhas/estados/" + optionSelectedState.value + "?formato=image/svg+xml&qualidade=intermediaria&intrarregiao=municipio");
                 this.setState({ maps: parse(res.data.split("?>")[1]) });
 
-                var variavel = document.getElementById(this.state.maps.props.children.props.children[0].props.id);
-                //variavel.style.fill = "green";
-                
-                let varListStatesSelected = this.state.maps.props.children.props.children;
-                
-                function procurarValores(value){
-                    if(value.id_munic == variavel.id & value.ano == optionSelectedYear.value)
-                    return value;
-                }
-                var retornarNumeros = AC.filter(procurarValores);
-                retornarNumeros.forEach(retornar => {
-                    console.log(retornar)
-                })
 
-                console.log(optionSelectedYear.value)
-                
-                const busca1 = AC.find(variavel => variavel.id === variavel.id);
-                
+                let countState = this.state.maps.props.children.props.children.length;
+                for (let i = 0; i <= countState; i++) {
+                    var variavel = document.getElementById(this.state.maps.props.children.props.children[i].props.id);
+                    //let varListStatesSelected = this.state.maps.props.children.props.children;
+
+                    function procurarValores(value) {
+                        if (value.id_munic == variavel.id & value.ano == optionSelectedYear.value)
+                            return value;
+                    }
+                    var retornarNumeros = citiesJson.filter(procurarValores);
+                    retornarNumeros.forEach(retornar => {
+                        console.log(retornar)
+
+                        switch (true) {
+                            case (retornar.cob_vac_bcg <= 10):
+                                variavel.style.fill = "red";
+                                break;
+                            case (retornar.cob_vac_bcg >= 11 && retornar.cob_vac_bcg <= 20):
+                                variavel.style.fill = "rgb(255, 76, 22)";
+                                break;
+                            case (retornar.cob_vac_bcg >= 21 && retornar.cob_vac_bcg <= 30):
+                                variavel.style.fill = "rgb(255, 115, 0)";
+                                break;
+                            case (retornar.cob_vac_bcg >= 31 && retornar.cob_vac_bcg <= 40):
+                                variavel.style.fill = "rgb(224, 172, 0)";
+                                break;
+                            case (retornar.cob_vac_bcg >= 41 && retornar.cob_vac_bcg <= 50):
+                                variavel.style.fill = "yellow";
+                                break;
+                            case (retornar.cob_vac_bcg >= 51 && retornar.cob_vac_bcg <= 60):
+                                variavel.style.fill = "rgb(166, 255, 0)";
+                                break;
+                            case (retornar.cob_vac_bcg >= 61 && retornar.cob_vac_bcg <= 70):
+                                variavel.style.fill = "rgb(193, 255, 79)";
+                                break;
+                            case (retornar.cob_vac_bcg >= 71 && retornar.cob_vac_bcg <= 80):
+                                variavel.style.fill = "rgb(94, 255, 0)";
+                                break;
+                            case (retornar.cob_vac_bcg >= 81 && retornar.cob_vac_bcg <= 90):
+                                variavel.style.fill = "rgb(16, 124, 16)";
+                                break;
+                            case (retornar.cob_vac_bcg >= 91 && retornar.cob_vac_bcg <= 100):
+                                variavel.style.fill = "green";
+                                break;
+                            default:
+                                variavel.style.fill = "gray";
+                                break;
+                        }
+                        //if(retornar.cob_vac_bcg <= 50){
+                        //   variavel.style.fill = "red";
+                        //}else{
+                        //    variavel.style.fill = "green";
+                        //}
+                    })
+                }
+
+                //console.log(optionSelectedYear.value)
+                //const busca1 = AC.find(variavel => variavel.id === variavel.id);
+
             } catch (err) {
                 console.log(err)
             }
