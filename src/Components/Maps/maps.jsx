@@ -9,36 +9,13 @@ import { ContainerMaps, Selects } from './styles';
 export class maps extends Component {
     constructor(props) {
         super(props);
-        this.handleMouseHover = this.handleMouseHover.bind(this);
         this.state = {
             maps: '',
-            isHovering: false,
             uf: statesJson,
             nameCity: [],
             codCity: [],
-            message: '',
         };
         this.updateMaps = this.updateMaps.bind(this);
-    }
-
-    handleEvent = (event) => {
-        if (event.type === "mousedown") {
-            this.setState({ message: "Mouse Down" });
-        } else {
-            this.setState({ message: "Mouse Up" });
-        }
-    }
-
-    handleMouseHover() {
-        this.setState(this.toggleHoverState);
-        this.setState({ message: "Teste Hover novo" });
-    }
-
-    toggleHoverState(state) {
-        return {
-            isHovering: !state.isHovering,
-            message: '',
-        };
     }
 
     updateMaps() {
@@ -62,7 +39,6 @@ export class maps extends Component {
                 let countState = this.state.maps.props.children.props.children.length;
                 for (let i = 0; i <= countState; i++) {
                     var variavel = document.getElementById(this.state.maps.props.children.props.children[i].props.id);
-                    //let varListStatesSelected = this.state.maps.props.children.props.children;
 
                     function procurarValores(value) {
                         if (value.id_munic == variavel.id & value.ano == optionSelectedYear.value)
@@ -190,7 +166,8 @@ export class maps extends Component {
                 var svgState = document.getElementById(cityCode);
                 if (el.classList) el.classList.add("on");
                 else el.className += "on";
-                svgState.classList.add("on");
+                if (svgState.classList) svgState.classList.add("on");
+                else svgState.className += "on";
             });
             el.addEventListener("mouseleave", function () {
                 var cityCode = el.getAttribute("data-city");
@@ -200,13 +177,29 @@ export class maps extends Component {
             });
         });
     }
-  renderCityMap() {
+
+    renderCityMap() {
         var wordMap = document.querySelectorAll("svg g path");
-        
+        wordMap.forEach(function (el) {
+            el.addEventListener("mouseenter", function () {
+                var svgState = el.getAttribute("id");
+                var cityCode = document.getElementById(svgState);
+                console.log(svgState)
+                el.classList.add("on");
+                if (cityCode.classList) cityCode.classList.add("on");
+                else cityCode.className += "on";
+            });
+            el.addEventListener("mouseleave", function () {
+                var svgState = el.getAttribute("id");
+                var cityCode = document.getElementById(svgState);
+                el.classList.remove("on");
+                cityCode.classList.remove("on");
+            });
+        });
     }
 
-    renderRowCity(rowsCity, idCity) {
-        return <li data-city={rowsCity}>{idCity}</li>
+    renderRowCity(rowsCity) {
+        return <li id={rowsCity} data-city={rowsCity}>{rowsCity}</li>
     }
 
     render() {
@@ -219,28 +212,15 @@ export class maps extends Component {
         }
 
         let rowsCity = [];
-        let idCity = [];
+        var idCity = [];
         for (let j = 0; j <= this.state.codCity.length; j++) {
             rowsCity.push(this.state.codCity[j]);
-        }
-
-        for (let j = 0; j <= this.state.nameCity.length; j++) {
             idCity.push(this.state.nameCity[j]);
+            console.log(this.state.maps)
         }
-
 
         return (
             <ContainerMaps>
-
-                {/*    <div name-city="teste de teste de teste">aaaaaaaaaaaa</div>
-                <div percentage-city="teste percentage" className="percentage"> Teste oercentageeeeee</div> */}
-
-                {this.state.isHovering &&
-                    <div className="hover-maps">
-                        {this.state.message}
-                    </div>
-                }
-
                 <Selects>
                     <div>
                         <p>Selecione o Estado:</p>

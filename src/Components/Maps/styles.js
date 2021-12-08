@@ -66,14 +66,32 @@ export const ContainerMaps = styled.div`
     .list-cities li{
         list-style-type: none;
     }
+
     .list-cities li.on {
-        background: red;
-        color: white;
+        background: aqua;
+        color: black;
         font-weight: bold;
     }
     path.on {
-        fill: red;
+        fill: aqua;
     }
+
+    .on:after {
+        display: none;
+        position: fixed;
+        padding: 5px;
+        border-radius: 3px;
+        content: attr(data-city);
+        background-color: #0095ff;
+        color: white;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+    .on:hover:after{
+        display: block;
+    }    
 `;
 
 export const Selects = styled.div`

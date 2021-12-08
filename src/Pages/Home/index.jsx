@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import "./styles.css";
 import { Container} from './styles';
 import citiesJson from "../../assets/cities.json";
 import Maps from '../../Components/Maps/maps';
