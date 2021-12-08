@@ -14,7 +14,8 @@ export class maps extends Component {
             maps: '',
             isHovering: false,
             uf: statesJson,
-            nameCity: '',
+            nameCity: [],
+            codCity: [],
             message: '',
         };
         this.updateMaps = this.updateMaps.bind(this);
@@ -46,6 +47,8 @@ export class maps extends Component {
 
         let selectedYear = document.getElementById("select-year");
         var optionSelectedYear = selectedYear.options[selectedYear.selectedIndex];
+        var arrayNameCitie = [];
+        var arrayCodCitie = [];
 
         if (!optionSelectedState) {
             optionSelectedState = "12";
@@ -67,44 +70,93 @@ export class maps extends Component {
                     }
                     var retornarNumeros = citiesJson.filter(procurarValores);
                     retornarNumeros.forEach(retornar => {
-                        variavel.setAttribute("name-city", retornar.nomemun);
+                        variavel.setAttribute("data-city", retornar.nomemun);
+                        variavel.setAttribute("data-city", retornar.nomemun);
                         variavel.setAttribute("percentage-city", retornar.cob_vac_bcg);
+                        arrayNameCitie.splice(1, 0, retornar.nomemun);
+                        arrayCodCitie.splice(1, 0, retornar.id_munic);
 
                         switch (true) {
-                            case (retornar.cob_vac_bcg <= 10):
-                                variavel.style.fill = "red";
+                            case (retornar.cob_vac_bcg >= 0.0 && retornar.cob_vac_bcg <= 10.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-zero-dez");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-zero-dez")
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 11 && retornar.cob_vac_bcg <= 20):
-                                variavel.style.fill = "rgb(255, 76, 22)";
+                            case (retornar.cob_vac_bcg >= 11.0 && retornar.cob_vac_bcg <= 20.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-onze-vinte");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-onze-vinte");
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 21 && retornar.cob_vac_bcg <= 30):
-                                variavel.style.fill = "rgb(255, 115, 0)";
+                            case (retornar.cob_vac_bcg >= 21.0 && retornar.cob_vac_bcg <= 30.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-vinteUm-trinta");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-vinteUm-trinta");
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 31 && retornar.cob_vac_bcg <= 40):
-                                variavel.style.fill = "rgb(224, 172, 0)";
+                            case (retornar.cob_vac_bcg >= 31.0 && retornar.cob_vac_bcg <= 40.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-trintaUm-quarenta");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-trintaUm-quarenta");
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 41 && retornar.cob_vac_bcg <= 50):
-                                variavel.style.fill = "yellow";
+                            case (retornar.cob_vac_bcg >= 41.0 && retornar.cob_vac_bcg <= 50.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-quarentaUm-cinquenta");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-quarentaUm-cinquenta");
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 51 && retornar.cob_vac_bcg <= 60):
-                                variavel.style.fill = "rgb(166, 255, 0)";
+                            case (retornar.cob_vac_bcg >= 51.0 && retornar.cob_vac_bcg <= 60.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-cinquentaUm-sessenta");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-cinquentaUm-sessenta");
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 61 && retornar.cob_vac_bcg <= 70):
-                                variavel.style.fill = "rgb(193, 255, 79)";
+                            case (retornar.cob_vac_bcg >= 61.0 && retornar.cob_vac_bcg <= 70.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-sessentaUm-setenta");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-sessentaUm-setenta");
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 71 && retornar.cob_vac_bcg <= 80):
-                                variavel.style.fill = "rgb(94, 255, 0)";
+                            case (retornar.cob_vac_bcg >= 71.0 && retornar.cob_vac_bcg <= 80.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-setentaUm-oitenta");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-setentaUm-oitenta");
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 81 && retornar.cob_vac_bcg <= 90):
-                                variavel.style.fill = "rgb(16, 124, 16)";
+                            case (retornar.cob_vac_bcg >= 81.0 && retornar.cob_vac_bcg <= 90.9):
+                                if (!variavel.classList) variavel.classList.add("fill-color-oitentaUm-noventa");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-oitentaUm-noventa");
+                                }
                                 break;
-                            case (retornar.cob_vac_bcg >= 91 && retornar.cob_vac_bcg <= 100):
-                                variavel.style.fill = "green";
+                            case (retornar.cob_vac_bcg >= 91.0 && retornar.cob_vac_bcg <= 100.0):
+                                if (!variavel.classList) variavel.classList.add("fill-color-noventaUm-cem");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.add("fill-color-noventaUm-cem");
+                                }
                                 break;
                             default:
-                                variavel.style.fill = "gray";
+                                if (!variavel.classList) variavel.classList.add("fill-color-zero");
+                                else {
+                                    variavel.classList.remove(variavel.classList[0]);
+                                    variavel.classList.remove(variavel.classList[0]);
+                                }
                                 break;
                         }
+                        this.setState({ nameCity: arrayNameCitie });
+                        this.setState({ codCity: arrayCodCitie });
                     })
                 }
 
@@ -118,14 +170,47 @@ export class maps extends Component {
         getMaps();
     }
     componentDidMount() {
-        this.updateMaps()
+        this.updateMaps();
+        this.renderCity();
+        this.renderCityMap();
+    }
+    componentDidUpdate() {
+        this.renderCity();
+        this.renderCityMap();
     }
     renderRow(row) {
         return <option value={row}>{row}</option>
     }
 
+    renderCity() {
+        var wordCities = document.querySelectorAll(".list-cities li");
+        wordCities.forEach(function (el) {
+            el.addEventListener("mouseenter", function () {
+                var cityCode = el.getAttribute("data-city");
+                var svgState = document.getElementById(cityCode);
+                if (el.classList) el.classList.add("on");
+                else el.className += "on";
+                svgState.classList.add("on");
+            });
+            el.addEventListener("mouseleave", function () {
+                var cityCode = el.getAttribute("data-city");
+                var svgState = document.getElementById(cityCode);
+                el.classList.remove("on");
+                svgState.classList.remove(svgState.classList[1]);
+            });
+        });
+    }
+  renderCityMap() {
+        var wordMap = document.querySelectorAll("svg g path");
+        
+    }
+
+    renderRowCity(rowsCity, idCity) {
+        return <li data-city={rowsCity}>{idCity}</li>
+    }
+
     render() {
-        let rows = []
+        let rows = [];
         for (let i = 2010; i <= 2019; i++) {
             rows.push(i)
         }
@@ -133,11 +218,22 @@ export class maps extends Component {
             return <p>Nenhum item</p>
         }
 
+        let rowsCity = [];
+        let idCity = [];
+        for (let j = 0; j <= this.state.codCity.length; j++) {
+            rowsCity.push(this.state.codCity[j]);
+        }
+
+        for (let j = 0; j <= this.state.nameCity.length; j++) {
+            idCity.push(this.state.nameCity[j]);
+        }
+
+
         return (
             <ContainerMaps>
 
-                <div name-city="teste de teste de teste">aaaaaaaaaaaa</div>
-                <div percentage-city="teste percentage" className="percentage"> Teste oercentageeeeee</div>
+                {/*    <div name-city="teste de teste de teste">aaaaaaaaaaaa</div>
+                <div percentage-city="teste percentage" className="percentage"> Teste oercentageeeeee</div> */}
 
                 {this.state.isHovering &&
                     <div className="hover-maps">
@@ -169,8 +265,11 @@ export class maps extends Component {
                 >
                     {this.state.maps}
                 </div>
-
                 <CaptionBar />
+
+                <ul className="list-cities">
+                    {rowsCity.map(this.renderRowCity)}
+                </ul>
             </ContainerMaps>
         )
     }

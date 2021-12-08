@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ContainerMaps = styled.div`
-
+    
     svg{
         max-height: 80vh;
         background-color: #F4F8FF;
@@ -47,8 +47,32 @@ export const ContainerMaps = styled.div`
         right: 0;
     }
 
-    [name-city]:hover:after {
+    [name-city]:hover:after{
         display: block;
+        background-color: red;
+    }
+
+    .list-cities{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: fixed;
+        right: 4vw;
+        top: 10vh;
+        overflow-y: scroll;
+    }
+
+    .list-cities li{
+        list-style-type: none;
+    }
+    .list-cities li.on {
+        background: red;
+        color: white;
+        font-weight: bold;
+    }
+    path.on {
+        fill: red;
     }
 `;
 

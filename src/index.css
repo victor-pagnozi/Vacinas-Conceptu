@@ -23,6 +23,40 @@ body {
     --color-noventaUm-cem: green;
 }
 
+.fill-color-zero-dez{
+  fill: var(--color-zero-dez);
+}
+.fill-color-onze-vinte{
+  fill: var(--color-onze-vinte);
+}
+.fill-color-vinteUm-trinta{
+  fill: var(--color-vinteUm-trinta);
+}
+.fill-color-trintaUm-quarenta{
+  fill: var(--color-trintaUm-quarenta);
+}
+.fill-color-quarentaUm-cinquenta{
+  fill: var(--color-quarentaUm-cinquenta);
+}
+.fill-color-cinquentaUm-sessenta{
+  fill: var(--color-cinquentaUm-sessenta);
+}
+.fill-color-sessentaUm-setenta{
+  fill: var(--color-sessentaUm-setenta);
+}
+.fill-color-setentaUm-oitenta{
+  fill: var(--color-setentaUm-oitenta);
+}
+.fill-color-oitentaUm-noventa{
+  fill: var(--color-oitentaUm-noventa);
+}
+.fill-color-noventaUm-cem{
+  fill: var(--color-noventaUm-cem);
+}
+.fill-color-zero{
+  fill: var(--color-zero)
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

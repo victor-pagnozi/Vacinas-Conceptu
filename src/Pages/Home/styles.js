@@ -7,4 +7,8 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    path:hover{
+        fill: red;
+    }
 `;
