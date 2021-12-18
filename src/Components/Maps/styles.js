@@ -22,6 +22,14 @@ export const ContainerMaps = styled.div`
         margin-top: 1rem;
     }
 
+    .render-map div {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+    }
+
     .hover-maps{
         position: fixed;
         top: 0;

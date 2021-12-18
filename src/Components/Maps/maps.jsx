@@ -1,10 +1,11 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import parse from "html-react-parser";
 import citiesJson from "../../assets/cities.json";
 import statesJson from "../../assets/states.json";
 import CaptionBar from '../CaptionBar/captionBar';
 import { ContainerMaps, Selects } from './styles';
+import ReactLoading from "react-loading";
 
 export class maps extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export class maps extends Component {
             uf: statesJson,
             nameCity: [],
             codCity: [],
+            done: undefined,
         };
         this.updateMaps = this.updateMaps.bind(this);
     }
@@ -34,7 +36,6 @@ export class maps extends Component {
             try {
                 const res = await axios.get("https://servicodados.ibge.gov.br/api/v3/malhas/estados/" + optionSelectedState.value + "?formato=image/svg+xml&qualidade=intermediaria&intrarregiao=municipio");
                 this.setState({ maps: parse(res.data.split("?>")[1]) });
-
 
                 let countState = this.state.maps.props.children.props.children.length;
                 for (let i = 0; i <= countState; i++) {
@@ -135,12 +136,10 @@ export class maps extends Component {
                         this.setState({ codCity: arrayCodCitie });
                     })
                 }
-
-                //console.log(optionSelectedYear.value)
-                //const busca1 = AC.find(variavel => variavel.id === variavel.id);
-
+                this.setState({ done: true });
             } catch (err) {
                 console.log(err)
+                alert("Erro ao consultar o mapa no IBGE")
             }
         }
         getMaps();
@@ -243,14 +242,28 @@ export class maps extends Component {
                 //onMouseEnter={this.handleMouseHover}
                 //onMouseLeave={this.handleMouseHover}
                 >
-                    {this.state.maps}
+                    {!this.state.done ? (
+                        <div>
+                            <ReactLoading
+                                type={"cubes"}
+                                color={"rgb(53, 126, 221)"}
+                                height={100}
+                                width={100}
+                                className={"loadingPage"}
+                            />
+                        </div>
+                    ) : (
+                        this.state.maps
+                    )
+                    }
                 </div>
                 <CaptionBar />
 
                 <ul className="list-cities">
                     {rowsCity.map(this.renderRowCity)}
                 </ul>
-            </ContainerMaps>
+
+            </ContainerMaps >
         )
     }
 }
